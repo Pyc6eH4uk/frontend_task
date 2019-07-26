@@ -1,26 +1,24 @@
 <template>
   <div id="app">
-    <router-link v-if="authenticated" to="/login" replace>Logout</router-link>
-    <router-view @authenticated="setAuthenticated"/>
+    <router-view @authenticated="authenticated"/>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'App',
   data () {
     return {
-      authenticated: false
+      // loggedIn: false
     }
   },
-  mounted () {
-    if (!this.authenticated) {
-      this.$router.replace({name: 'login'})
-    }
-  },
-  methods: {
-    setAuthenticated (status) {
-      this.authenticated = status
+  computed: {
+    authenticated () {
+      return this.$store.state.authenticated
+    },
+    message () {
+      return this.$store.state.message
     }
   }
 }
