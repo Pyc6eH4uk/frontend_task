@@ -11,17 +11,26 @@ export default new Router({
       path: '/',
       redirect: {
         name: 'login'
+      },
+      meta: {
+        title: 'ГЛАВНАЯ СТРАНИЦА'
       }
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: {
+        title: 'Леееееееера'
+      }
     },
     {
       path: '/tasks',
       name: 'Tasks',
-      component: Tasks
+      component: Tasks,
+      meta: {
+        title: 'ЗАДАЧИ'
+      }
     }
   ]
 })

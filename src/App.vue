@@ -13,6 +13,9 @@ export default {
       // loggedIn: false
     }
   },
+  beforeMount () {
+    document.title = this.$route.meta.title
+  },
   computed: {
     authenticated () {
       return this.$store.state.authenticated

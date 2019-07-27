@@ -10,21 +10,20 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    authenticated: localStorage.getItem('logged_in') || false
+    authenticated: localStorage.getItem('logged_in') || false,
+    username: localStorage.getItem('username') || ''
   },
   mutations: {
-    authenticated () {
-      console.log('mutation')
-      this.state.authenticated = true
+    authenticated (state, payload) {
+      console.log('mutation', name.username)
+      state.authenticated = true
+      state.username = payload
       localStorage.setItem('logged_in', 'true')
+      localStorage.setItem('username', payload)
     },
     logout () {
-      console.log('hererqqqq')
       this.state.authenticated = false
-      console.log(this.state.authenticated)
       localStorage.setItem('logged_in', 'false')
-      console.log(localStorage.getItem('logged_in'))
-      // this.$router.replace('/login')
     }
   }
 })

@@ -8,6 +8,7 @@
       <input id="password" type="password" v-model="password">
       <input type="submit" value="Войти" @click="signIn">
     </form>
+    <p>{{message}}</p>
   </div>
 </template>
 
@@ -23,29 +24,30 @@ export default {
   methods: {
     signIn: function (event) {
       event.preventDefault()
-      if (this.username.toLowerCase() === 'ruslan' && this.password === '12345') {
+      if (this.password === '12345') {
         alert('Successfully Sign IN')
-        this.$store.commit('authenticated')
+        this.$store.commit('authenticated', this.username)
         this.$router.push('tasks')
         return
       }
-      this.message = 'Try AGAIN'
+      this.message = 'Неправильное имя пользователя или пароль'
       this.username = ''
       this.password = ''
     }
   },
   beforeCreate () {
-    if (this.$store.state.authenticated) {
-      console.log('hereraaaa')
-      this.$router.replace('tasks')
-    }
-    console.log('herer')
+    document.title = this.$route.meta.title
   }
 }
 </script>
 
 <style scoped>
 #login {
-
+  margin: 0;
+  background: whitesmoke;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 </style>
